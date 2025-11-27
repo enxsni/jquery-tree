@@ -1,0 +1,186 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/style.min.css" type="text/css" charset="utf-8" />
+	<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/mytree.js"></script>
+	
+	<style>
+	.folder {
+		background-image: url("img/folder.png") !important;
+	}
+	.service {
+		background-image: url("img/service.png") !important;
+	}
+	.method {
+		background-image: url("img/method.png") !important;
+	}
+	</style>
+</head>
+<body>
+	<script>
+	$(function () {
+		var mytree1 = new MyTree({
+			multiple_selection : true, //allow multiple selection
+			toggle_selection : false, //click one to select, click again to deselect
+			toggle_children_on_click : true, //toggle children on click the element, besides clicking the arrow icon
+			ajax_callback_before : function(ul, json_obj, mytree) { //on ajax request, after getting json response from server this gets called as second callback, before the initChilds. This function is responsible to parse the json_obj and convert it into html nodes inside of the ul node: func1(ul, json_obj, mytree);
+				if (json_obj && $.isPlainObject(json_obj)) {
+					$.each(json_obj, function(name, item) {
+						if (item && item.hasOwnProperty("properties") && item["properties"]) {
+							var props = item["properties"];
+							var type = props["type"];
+							var path = props["path"];
+							var files = item["files"];
+							
+							var html = type == "folder" ? '<li>' + name + '<ul url="sub_folders.json?path=' + path + '"></ul></li>' : '<li data-jstree=\'{"icon":"jstree-file"}\'>' + name + '</li>';
+							
+							ul.insertAdjacentHTML("beforeend", html);
+							
+							if (type == "folder" && files) {
+								var li = ul.lastElementChild;
+								li.classList.add("jstree-open");
+								var li_ul = li.querySelector("ul");
+								
+								mytree.options.ajax_callback_before(li_ul, files, mytree);
+							}
+						}
+					});
+				}
+			},
+			ajax_callback_after : function(ul, json_obj, mytree) { //on ajax request, after getting json response from server this gets called as third callback, after the initChilds: func2(ul, json_obj, mytree);
+				//here I can set some other events to the ul items
+			},
+			ajax_callback_error : function(ul, jqXHR, textStatus, errorThrown, mytree) { //on ajax request error callback: func3(ul, jqXHR, textStatus, errorThrown, mytree) 
+				alert(errorThrown);
+			},
+		});
+		mytree1.init("file_tree_1");
+		
+		var mytree2 = new MyTree();
+		mytree2.init("file_tree_2");
+	});
+	</script>
+	
+	<div id="file_tree_1" class="hidden">
+		<ul>
+			<li class="jstree-open">
+				<label>Folder A</label>
+				<ul>
+					<li><a onClick="window.open('//bloxtor.com')">Link</a></li>
+				</ul>
+			</li>
+			<li>
+				<label>Folder B</label>
+				<ul>
+					<li class="jstree-open">
+						Sub-Folder C
+						<ul>
+							<li data-jstree='{"icon":"jstree-file"}'>
+								<label>test</label>
+								<ul>
+									<li data-jstree='{"icon":"jstree-folder"}'>subtest</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li data-jstree='{"icon":"jstree-file"}'>file.xml</li>
+				</ul>
+			</li>
+			<li data-jstree='{"icon":"jstree-folder"}'>Fake Folder</li>
+			<li>Through Ajax on open
+				<ul url="sub_folders.json"></ul>
+			</li>
+		</ul>
+	</div>
+	
+	<hr/>
+	
+	<div id="file_tree_2" class="hidden">
+		<ul>
+			<li class="jstree-open">
+				<label>DBs Layer</label>
+				<ul>
+					<li>
+						<a class="link" href="$">
+							<label>Mysql DB Foo</label>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<label>Business Logic Layer</label>
+				<ul>
+					<li data-jstree='{"icon":"folder"}'>
+						<label>common</label>
+						<ul>
+							<li data-jstree='{"icon":"service"}'>
+								<label>CommonService</label>
+								<ul>
+									<li data-jstree='{"icon":"method"}'>
+										<label>getBusinessLogicLayer</label>
+									</li>
+									<li data-jstree='{"icon":"method"}'>
+										<label>getBroker</label>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li data-jstree='{"icon":"folder"}'>
+						<label>My Project</label>
+						<ul>
+							<li data-jstree='{"icon":"service"}'>
+								<label>PriceTypeService</label>
+								<ul>
+									<li data-jstree='{"icon":"method"}'>
+										<label>insertPriceType</label>
+									</li>
+									<li data-jstree='{"icon":"method"}'>
+										<label>updatePriceType</label>
+									</li>
+									<li data-jstree='{"icon":"method"}'>
+										<label>getPriceType</label>
+									</li>
+								</ul>
+							</li>
+							<li data-jstree='{"icon":"service"}'>
+								<label>MedicareServicePriceService</label>
+								<ul>
+									<li data-jstree='{"icon":"method"}'>
+										<label>insertServicePrice</label>
+									</li>
+									<li data-jstree='{"icon":"method"}'>
+										<label>updateServicePrice</label>
+									</li>
+									<li data-jstree='{"icon":"method"}'>
+										<label>getServicePrice</label>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li class="presentation_layers">
+				<label>Presentation Layers</label>
+				<ul></ul>
+			</li>
+			<li class="management jstree-open">
+				<label>Management</label>
+				<ul>
+					<li>
+						<a href="#">Users Management</a>
+					</li>
+					<li>
+						<a href="#">
+							<label>Layers Management</label>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	</ul>
+	</div>
+</body>
+</html>
