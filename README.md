@@ -1,7 +1,7 @@
 # JQuery Tree
 
 > Original Repos:   
-> - JQuery My My Tree: https://github.com/a19836/jquery-tree/   
+> - JQuery Tree: https://github.com/a19836/jquery-tree/   
 > - Bloxtor: https://github.com/a19836/bloxtor/
 
 ## Overview
